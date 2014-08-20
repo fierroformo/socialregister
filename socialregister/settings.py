@@ -26,8 +26,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(SITE_ROOT, '..', 'db/database.db'), # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(SITE_ROOT, '..', 'db/database.db'),
     }
 }
 
@@ -43,7 +43,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-MX'
 
 SITE_ID = 1
 
@@ -97,8 +97,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'socialregister.urls'
@@ -147,8 +145,8 @@ LOGGING = {
     }
 }
 
-LOGIN_REDIRECT_URL = 'home'
-LOGIN_URL = 'users:login'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'home'
+SOCIAL_AUTH_LOGIN_URL = 'users:login'
 
 # Social Auth Configuration
 AUTH_USER_MODEL = 'users.User'
