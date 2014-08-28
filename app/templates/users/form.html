@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block page_title %}Login{% endblock %}
+
+{% block content %}
+    <div class="col-md-4 col-md-offset-4">
+        <form class="form-horizontal" method='POST'>
+            <h3>Social login <span class="small"><a href="{% url 'users:register' %}">Create an account</a></span></h3>
+            <a href="{% url 'social:begin' 'facebook' %}">
+                <i class="fa fa-facebook-square" style="color: #3B5998;"></i> Facebook
+            </a>
+            <hr/>
+            {% csrf_token %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-warning">{{ error }}</div>
+            {% endfor %}
+            <div class="form-group">
+                <p>
+                    <label for="username"><strong>Email</strong></label>
+                    <input id="username" type="text" class="col-md-12" name="username" />
+                </p>
+                <p>
+                    <label for="password"><strong>Password</strong></label>
+                    <input id="password" type="password" class="col-md-12" name="password" />
+                </p>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block" value="Log in" />
+            </div>
+        </form>
+    </div>
+{% endblock %}

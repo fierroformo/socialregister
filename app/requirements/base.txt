@@ -1,0 +1,6 @@
+psycopg2
+django<1.7
+djangorestframework
+markdown
+python-social-auth==0.1.26
+south

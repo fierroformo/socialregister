@@ -1,4 +1,4 @@
 .vagrant
-socialregister/db/*
+app/db/*
 *.pyc
 *~
