@@ -1,7 +1,7 @@
 ## Configuración
 
 
-### Instalacion de `python social auth`
+### Instalar `python social auth`
 
 * [Instalación](http://python-social-auth.readthedocs.org/en/latest/installing.html)
 
@@ -27,6 +27,6 @@
 
 ## Configuración para autenticacion con `Facebook`
 
-* `SOCIAL_AUTH_FACEBOOK_KEY` = '<key>'
-* `SOCIAL_AUTH_FACEBOOK_SECRET` = '<secret>'
-* `SOCIAL_AUTH_FACEBOOK_SCOPE` = [<scope>]
+* `SOCIAL_AUTH_FACEBOOK_KEY = '<key>'`
+* `SOCIAL_AUTH_FACEBOOK_SECRET = '<secret>'`
+* `SOCIAL_AUTH_FACEBOOK_SCOPE = [<scope>]`

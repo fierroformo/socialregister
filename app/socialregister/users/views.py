@@ -5,7 +5,16 @@ from django.contrib.auth.views import logout
 from django.shortcuts import redirect
 from django.views.generic.edit import FormView
 
-from socialregister.users.forms import RegisterForm
+from socialregister.users.forms import CompleteDataForm, RegisterForm
+
+
+class UserCompleteData(FormView):
+    form_class = CompleteDataForm
+    template_name = "users/complete_data.html"
+
+    def dispatch(self, *args, **kwargs):
+        print "kwargs............", kwargs
+        return super(UserCompleteData, self).dispatch(*args, **kwargs)
 
 
 class UserLogin(FormView):

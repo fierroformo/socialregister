@@ -9,6 +9,9 @@
             <a href="{% url 'social:begin' 'facebook' %}">
                 <i class="fa fa-facebook-square" style="color: #3B5998;"></i> Facebook
             </a>
+            <a href="{% url 'social:begin' 'twitter' %}">
+                <i class="fa fa-twitter" style="color: #3B5998;"></i> Twitter
+            </a>
             <hr/>
             {% csrf_token %}
             {% for error in form.non_field_errors %}

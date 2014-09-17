@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 
@@ -13,4 +14,6 @@ class HomeView(TemplateView):
 
     @method_decorator(login_required(login_url='/users/login'))
     def dispatch(self, *args, **kwargs):
+        if not self.request.user.email:
+            return redirect('users:complete_data')
         return super(HomeView, self).dispatch(*args, **kwargs)
