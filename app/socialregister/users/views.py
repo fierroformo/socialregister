@@ -12,8 +12,16 @@ class UserCompleteData(FormView):
     form_class = CompleteDataForm
     template_name = "users/complete_data.html"
 
+    def form_valid(self, form):
+        email = form.data['email']
+        self.request.user.email = email
+        self.request.user.username = email
+        self.request.user.save()
+        return redirect('/')
+
     def dispatch(self, *args, **kwargs):
-        print "kwargs............", kwargs
+        if self.request.user.email:
+            return redirect('/')
         return super(UserCompleteData, self).dispatch(*args, **kwargs)
 
 

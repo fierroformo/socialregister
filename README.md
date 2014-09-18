@@ -27,6 +27,13 @@
 
 ## Configuración para autenticacion con `Facebook`
 
+* Agregar `'social.backends.facebook.FacebookOAuth2'` a la tupla `AUTHENTICATION_BACKENDS`
 * `SOCIAL_AUTH_FACEBOOK_KEY = '<key>'`
 * `SOCIAL_AUTH_FACEBOOK_SECRET = '<secret>'`
 * `SOCIAL_AUTH_FACEBOOK_SCOPE = [<scope>]`
+
+## Configuración para autenticacion con `twitter`
+
+* Agregar `'social.backends.twitter.TwitterOAuth',` a la tupla `AUTHENTICATION_BACKENDS`
+* `SOCIAL_AUTH_TWITTER_KEY = '<key>'`
+* `SOCIAL_AUTH_TWITTER_SECRET = '<secret>'`
