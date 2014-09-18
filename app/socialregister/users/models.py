@@ -26,7 +26,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    email = models.EmailField(max_length=100, unique=True)
+    email = models.EmailField(max_length=100)
     username = models.CharField(max_length=100, unique=True)
     first_name = models.CharField(max_length=50, verbose_name=u"nombre(s)")
     last_name = models.CharField(max_length=50, verbose_name=u"apellidos")
@@ -35,8 +35,8 @@ class User(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email', 'first_name', 'last_name']
 
     objects = CustomUserManager()
 

@@ -5,7 +5,24 @@ from django.contrib.auth.views import logout
 from django.shortcuts import redirect
 from django.views.generic.edit import FormView
 
-from socialregister.users.forms import RegisterForm
+from socialregister.users.forms import CompleteDataForm, RegisterForm
+
+
+class UserCompleteData(FormView):
+    form_class = CompleteDataForm
+    template_name = "users/complete_data.html"
+
+    def form_valid(self, form):
+        email = form.data['email']
+        self.request.user.email = email
+        self.request.user.username = email
+        self.request.user.save()
+        return redirect('/')
+
+    def dispatch(self, *args, **kwargs):
+        if self.request.user.email:
+            return redirect('/')
+        return super(UserCompleteData, self).dispatch(*args, **kwargs)
 
 
 class UserLogin(FormView):
