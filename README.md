@@ -25,15 +25,29 @@
 | `SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = <boolean>` | Define que el nombre de usuario sera el email |
 
 
-## Configuración para autenticacion con `Facebook`
+## Configuración para autenticacion con `Facebook` (oauth2)
 
 * Agregar `'social.backends.facebook.FacebookOAuth2'` a la tupla `AUTHENTICATION_BACKENDS`
 * `SOCIAL_AUTH_FACEBOOK_KEY = '<key>'`
 * `SOCIAL_AUTH_FACEBOOK_SECRET = '<secret>'`
 * `SOCIAL_AUTH_FACEBOOK_SCOPE = [<scope>]`
 
-## Configuración para autenticacion con `twitter`
 
-* Agregar `'social.backends.twitter.TwitterOAuth',` a la tupla `AUTHENTICATION_BACKENDS`
+## Configuración para autenticacion con `google` (oauth2)
+
+* Agregar `'social.backends.google.GoogleOAuth2'` a la tupla `AUTHENTICATION_BACKENDS`
+* `SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '<key>'`
+* `SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '<secret>'`
+
+
+## Configuración para autenticacion con `twitter` (oauth2)
+
+* Agregar `'social.backends.twitter.TwitterOAuth'` a la tupla `AUTHENTICATION_BACKENDS`
 * `SOCIAL_AUTH_TWITTER_KEY = '<key>'`
 * `SOCIAL_AUTH_TWITTER_SECRET = '<secret>'`
+
+
+### Otros
+
+Al momento de proporcionar la redirect_uri en nuestra consola de aplicaciones (google, twitter, facebook...) debe
+contener el siguiente formato `<protocol>://<domain>/social/complete/<backend>/`

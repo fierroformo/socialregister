@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
@@ -44,4 +43,4 @@ class User(AbstractBaseUser):
         return self.email
 
     def get_full_name(self):
-        return "{0} {1}".format(self.first_name, self.last_name)
+        return u"{0} {1}".format(self.first_name, self.last_name)
