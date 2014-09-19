@@ -158,6 +158,8 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
     'social.backends.github.GithubOAuth2',
     'social.backends.google.GoogleOAuth2',
+    'social.backends.linkedin.LinkedinOAuth2',
+    'social.backends.live.LiveOAuth2',
     'social.backends.twitter.TwitterOAuth',
 )
 
@@ -170,6 +172,12 @@ SOCIAL_AUTH_GITHUB_SECRET = '506924d68c731d97bdf04ef74da19d5c25b84896'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '68077682250-c27p1tjb123nh27us84ig040lsi29fkk.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '7RrHPvYTTfbfqWkCNFZptyxm'
+
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '75wk79z199rqtm'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'P4qZizArLMse1vnP'
+
+SOCIAL_AUTH_LIVE_KEY = "000000004C122931"
+SOCIAL_AUTH_LIVE_SECRET = "p08Ti0NhPvkmvOM1KjWa-lZxFQqYvRhC"
 
 SOCIAL_AUTH_TWITTER_KEY = 'f59DUwhKyyvljK0ejvD5Plifs'
 SOCIAL_AUTH_TWITTER_SECRET = 'csk1CCDHJUsAzgKDNVTV8VTkTnBIDyZtK6QoYOoVzTPmtt4Aeu'

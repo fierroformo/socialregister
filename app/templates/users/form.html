@@ -15,8 +15,14 @@
             <a href="{% url 'social:begin' 'google-oauth2' %}">
                 <i class="fa fa-google" style="color: #3B5998;"></i> Google
             </a>
+            <a href="{% url 'social:begin' 'live' %}">
+                <i class="fa fa-windows" style="color: #3B5998;"></i> Outlook
+            </a>
             <a href="{% url 'social:begin' 'github' %}">
                 <i class="fa fa-github" style="color: #3B5998;"></i> Github
+            </a>
+            <a href="{% url 'social:begin' 'linkedin-oauth2' %}">
+                <i class="fa fa-linkedin" style="color: #3B5998;"></i> Linkedin
             </a>
             <hr/>
             {% csrf_token %}
