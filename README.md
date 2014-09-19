@@ -1,3 +1,8 @@
+## Descripción
+socialregister es una aplicacion para autenticación de usuarios con facebook,
+Twitter, Google+, Outlook, Github y Linkedin, hace uso del proyecto `python social auth`
+
+
 ## Configuración
 
 
