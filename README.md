@@ -27,6 +27,7 @@
 
 ## Configuración para autenticacion con `Facebook` (oauth2)
 
+* [Crea la aplicación](https://developers.facebook.com/quickstarts/?platform=web)
 * Agregar `'social.backends.facebook.FacebookOAuth2'` a la tupla `AUTHENTICATION_BACKENDS`
 * `SOCIAL_AUTH_FACEBOOK_KEY = '<key>'`
 * `SOCIAL_AUTH_FACEBOOK_SECRET = '<secret>'`
@@ -35,6 +36,7 @@
 
 ## Configuracion para autenticacion con `github` (oauth2)
 
+* [Crea la aplicación](https://github.com/settings/applications)
 * Agregar `'social.backends.github.GithubOAuth2'` a la tupla `AUTHENTICATION_BACKENDS`
 * `SOCIAL_AUTH_GITHUB_KEY = '<key>'
 * `SOCIAL_AUTH_GITHUB_SECRET = '<secret>'`
@@ -42,13 +44,23 @@
 
 ## Configuración para autenticacion con `google` (oauth2)
 
+* [Crea la aplicación](https://console.developers.google.com/project)
 * Agregar `'social.backends.google.GoogleOAuth2'` a la tupla `AUTHENTICATION_BACKENDS`
 * `SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '<key>'`
 * `SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '<secret>'`
 
 
+## Configuración para autenticacion con `Outlook` (oauth2)
+
+* [Crea la aplicación](https://account.live.com/developers/applications/)
+* Agregar `'social.backends.live.LiveOAuth2'` a la tupla `AUTHENTICATION_BACKENDS`
+* `SOCIAL_AUTH_LIVE_KEY = '<key>'`
+* `SOCIAL_AUTH_LIVE_SECRET = '<secret>'`
+
+
 ## Configuración para autenticacion con `twitter` (oauth2)
 
+* [Crea la aplicación](https://apps.twitter.com/)
 * Agregar `'social.backends.twitter.TwitterOAuth'` a la tupla `AUTHENTICATION_BACKENDS`
 * `SOCIAL_AUTH_TWITTER_KEY = '<key>'`
 * `SOCIAL_AUTH_TWITTER_SECRET = '<secret>'`
