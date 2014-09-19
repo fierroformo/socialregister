@@ -13,7 +13,10 @@
                 <i class="fa fa-twitter" style="color: #3B5998;"></i> Twitter
             </a>
             <a href="{% url 'social:begin' 'google-oauth2' %}">
-                <i class="fa fa-twitter" style="color: #3B5998;"></i> Google
+                <i class="fa fa-google" style="color: #3B5998;"></i> Google
+            </a>
+            <a href="{% url 'social:begin' 'github' %}">
+                <i class="fa fa-github" style="color: #3B5998;"></i> Github
             </a>
             <hr/>
             {% csrf_token %}
