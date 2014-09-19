@@ -33,6 +33,13 @@
 * `SOCIAL_AUTH_FACEBOOK_SCOPE = [<scope>]`
 
 
+## Configuracion para autenticacion con `github` (oauth2)
+
+* Agregar `'social.backends.github.GithubOAuth2'` a la tupla `AUTHENTICATION_BACKENDS`
+* `SOCIAL_AUTH_GITHUB_KEY = '<key>'
+* `SOCIAL_AUTH_GITHUB_SECRET = '<secret>'`
+
+
 ## Configuración para autenticacion con `google` (oauth2)
 
 * Agregar `'social.backends.google.GoogleOAuth2'` a la tupla `AUTHENTICATION_BACKENDS`

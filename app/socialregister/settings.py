@@ -156,6 +156,7 @@ AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'social.backends.facebook.FacebookOAuth2',
+    'social.backends.github.GithubOAuth2',
     'social.backends.google.GoogleOAuth2',
     'social.backends.twitter.TwitterOAuth',
 )
@@ -163,6 +164,9 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_FACEBOOK_KEY = '664961683574138'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'f76607d426b304c3b6c1102d466389a7'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_GITHUB_KEY = '54a21c1a5be239589cf0'
+SOCIAL_AUTH_GITHUB_SECRET = '506924d68c731d97bdf04ef74da19d5c25b84896'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '68077682250-c27p1tjb123nh27us84ig040lsi29fkk.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '7RrHPvYTTfbfqWkCNFZptyxm'
