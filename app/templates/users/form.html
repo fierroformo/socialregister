@@ -21,6 +21,9 @@
             <a href="{% url 'social:begin' 'github' %}">
                 <i class="fa fa-github" style="color: #3B5998;"></i> Github
             </a>
+            <a href="{% url 'social:begin' 'linkedin-oauth2' %}">
+                <i class="fa fa-linkedin" style="color: #3B5998;"></i> Linkedin
+            </a>
             <hr/>
             {% csrf_token %}
             {% for error in form.non_field_errors %}
