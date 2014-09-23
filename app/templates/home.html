@@ -5,5 +5,14 @@
         <h1>Welcome!</h1>
         <p class="lead">Email: {{ user }}</p>
         <p class="lead">Name: {{ user.get_full_name }}</p>
+        <p>Conexiones Sociales</p>
+        <ul>
+        {% for backend in user.social_auth.all %}
+            <li>
+                {{ backend.provider }}
+                <a href="{% url 'users:delete_conection' backend.provider %}">eliminar conexión</a>
+            </li>
+        {% endfor %}
+        </ul>
     </div>
 {% endblock %}

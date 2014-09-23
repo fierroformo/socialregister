@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import logout
 from django.shortcuts import redirect
+from django.utils.decorators import method_decorator
+from django.views.generic import View
 from django.views.generic.edit import FormView
+
+from social.apps.django_app.default.models import UserSocialAuth
 
 from socialregister.users.forms import CompleteDataForm, RegisterForm
 
@@ -23,6 +28,18 @@ class UserCompleteData(FormView):
         if self.request.user.email:
             return redirect('/')
         return super(UserCompleteData, self).dispatch(*args, **kwargs)
+
+
+class UserDeleteConection(View):
+
+    def get(self, *Args, **kwargs):
+        UserSocialAuth.objects.get(
+            user_id=self.request.user.id, provider=kwargs['provider']).delete()
+        return redirect('/')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UserDeleteConection, self).dispatch(*args, **kwargs)
 
 
 class UserLogin(FormView):
