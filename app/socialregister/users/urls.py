@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     url(r"^delete/conection/(?P<provider>[\w\-]+)/$", views.UserDeleteConection.as_view(), name="delete_conection"),
     url(r"^login/$", views.UserLogin.as_view(), name="login"),
     url(r"^logout/$", views.user_logout, name="logout"),
+    url(r"^set-password/$", views.UserSetPassword.as_view(), name="set_password"),
     url(r"^register/$", views.UserRegister.as_view(), name="register"),
 )

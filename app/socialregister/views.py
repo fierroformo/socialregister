@@ -16,4 +16,9 @@ class HomeView(TemplateView):
     def dispatch(self, *args, **kwargs):
         if not self.request.user.email:
             return redirect('users:complete_data')
+
+        if not self.request.user.social_auth.count() and \
+           not self.request.user.has_usable_password():
+            return redirect('users:set_password')
+
         return super(HomeView, self).dispatch(*args, **kwargs)

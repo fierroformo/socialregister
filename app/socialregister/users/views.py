@@ -8,9 +8,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.views.generic.edit import FormView
 
-from social.apps.django_app.default.models import UserSocialAuth
-
-from socialregister.users.forms import CompleteDataForm, RegisterForm
+from socialregister.users.forms import (
+    CompleteDataForm, SetPasswordForm, RegisterForm)
 
 
 class UserCompleteData(FormView):
@@ -31,11 +30,30 @@ class UserCompleteData(FormView):
         return super(UserCompleteData, self).dispatch(*args, **kwargs)
 
 
+class UserSetPassword(FormView):
+    form_class = SetPasswordForm
+    template_name = "users/set_password.html"
+
+    def form_valid(self, form):
+        self.request.user.set_password(form.cleaned_data['password'])
+        self.request.user.save()
+        return redirect("/")
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UserSetPassword, self).dispatch(*args, **kwargs)
+
+
 class UserDeleteConection(View):
 
     def post(self, *args, **kwargs):
-        UserSocialAuth.objects.get(
+        self.request.user.social_auth.get(
             user_id=self.request.user.id, provider=kwargs['provider']).delete()
+
+        if not self.request.user.social_auth.count() and \
+           not self.request.user.has_usable_password():
+            return redirect('users:set_password')
+
         return redirect('/')
 
     @method_decorator(login_required)
