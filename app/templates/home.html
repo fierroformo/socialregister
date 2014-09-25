@@ -9,8 +9,11 @@
         <ul>
         {% for backend in user.social_auth.all %}
             <li>
-                {{ backend.provider }}
-                <a href="{% url 'users:delete_conection' backend.provider %}">eliminar conexión</a>
+                <form class="form" action="{% url 'users:delete_conection' backend.provider %}" method="POST">
+                    {% csrf_token %}
+                    <label>{{ backend.provider }}</label>
+                    <input type="submit" class="btn btn-danger" value="Eliminar Conexión" />
+                </form>
             </li>
         {% endfor %}
         </ul>
