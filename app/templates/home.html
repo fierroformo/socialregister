@@ -1,21 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="col-lg-12">
-        <h1>Welcome!</h1>
-        <p class="lead">Email: {{ user }}</p>
-        <p class="lead">Name: {{ user.get_full_name }}</p>
-        <p>Conexiones Sociales</p>
-        <ul>
-        {% for backend in user.social_auth.all %}
-            <li>
-                <form class="form" action="{% url 'users:delete_conection' backend.provider %}" method="POST">
-                    {% csrf_token %}
-                    <label>{{ backend.provider }}</label>
-                    <input type="submit" class="btn btn-danger" value="Eliminar Conexión" />
-                </form>
-            </li>
-        {% endfor %}
-        </ul>
+    <div class="cold-md-12">
+        <h2>Bienvenido</h2>
+        <p class="lead">Email: {{ user }} - Nombre: {{ user.get_full_name }}</p>
     </div>
+    {% include "users/conections.html" %}
 {% endblock %}

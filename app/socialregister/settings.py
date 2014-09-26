@@ -163,6 +163,15 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.twitter.TwitterOAuth',
 )
 
+BACKENDS = {
+    'facebook': {'connected': False, 'title': 'Facebook'},
+    'twitter': {'connected': False, 'title': 'Twitter'},
+    'google-oauth2': {'connected': False, 'title': 'Google+'},
+    'live': {'connected': False, 'title': 'Outlook'},
+    'github': {'connected': False, 'title': 'Github'},
+    'linkedin-oauth2': {'connected': False, 'title': 'Linkedin'}
+}
+
 SOCIAL_AUTH_FACEBOOK_KEY = '664961683574138'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'f76607d426b304c3b6c1102d466389a7'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']

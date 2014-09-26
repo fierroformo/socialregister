@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -44,6 +45,22 @@ class UserSetPassword(FormView):
         return super(UserSetPassword, self).dispatch(*args, **kwargs)
 
 
+class UserUnsetPassword(View):
+
+    def post(self, *args, **kwargs):
+        self.request.user.set_unusable_password()
+        self.request.user.save()
+
+        if not self.request.user.social_auth.count():
+            return redirect('users:set_password')
+
+        return redirect('/')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UserUnsetPassword, self).dispatch(*args, **kwargs)
+
+
 class UserDeleteConection(View):
 
     def post(self, *args, **kwargs):
@@ -63,11 +80,16 @@ class UserDeleteConection(View):
 
 class UserLogin(FormView):
     form_class = AuthenticationForm
-    template_name = "users/form.html"
+    template_name = "users/login.html"
 
     def form_valid(self, form):
         login(self.request, form.get_user())
         return redirect("/")
+
+    def get_context_data(self, queryset=None, **kwargs):
+        context = super(UserLogin, self).get_context_data(**kwargs)
+        context['backends'] = settings.BACKENDS
+        return context
 
     def dispatch(self, *args, **kwargs):
         if self.request.user.is_authenticated():

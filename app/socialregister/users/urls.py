@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r"^logout/$", views.user_logout, name="logout"),
     url(r"^set-password/$", views.UserSetPassword.as_view(), name="set_password"),
     url(r"^register/$", views.UserRegister.as_view(), name="register"),
+    url(r"^unset-password/$", views.UserUnsetPassword.as_view(), name="unset_password"),
 )
