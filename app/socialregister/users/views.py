@@ -24,6 +24,7 @@ class UserCompleteData(FormView):
         self.request.user.save()
         return redirect('/')
 
+    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         if self.request.user.email:
             return redirect('/')
@@ -32,7 +33,7 @@ class UserCompleteData(FormView):
 
 class UserDeleteConection(View):
 
-    def get(self, *Args, **kwargs):
+    def post(self, *args, **kwargs):
         UserSocialAuth.objects.get(
             user_id=self.request.user.id, provider=kwargs['provider']).delete()
         return redirect('/')
