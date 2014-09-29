@@ -3,6 +3,18 @@ from django import forms
 from socialregister.users.models import User
 
 
+class BaseRegisterForm(object):
+
+    def clean(self):
+        if not 'password' in self.cleaned_data:
+            raise forms.ValidationError("Enter a password.")
+        elif not 'confirm_password' in self.cleaned_data:
+            raise forms.ValidationError("Enter your password (again)")
+        elif self.cleaned_data['confirm_password'] != self.cleaned_data['password']:
+            raise forms.ValidationError("Passwords don't match")
+        return self.cleaned_data
+
+
 class CompleteDataForm(forms.ModelForm):
 
     class Meta:
@@ -15,17 +27,18 @@ class CompleteDataForm(forms.ModelForm):
             raise forms.ValidationError(u'Email addresses must be unique.')
         return email
 
-class RegisterForm(forms.ModelForm):
+
+class SetPasswordForm(BaseRegisterForm, forms.ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput())
 
-    def clean(self):
-        if not 'password' in self.cleaned_data:
-            raise forms.ValidationError("Enter a password.")
-        elif not 'confirm_password' in self.cleaned_data:
-            raise forms.ValidationError("Enter your password (again)")
-        elif self.cleaned_data['confirm_password'] != self.cleaned_data['password']:
-            raise forms.ValidationError("Passwords don't match")
-        return self.cleaned_data
+    class Meta:
+        model = User
+        fields = ['password']
+        widgets = {'password': forms.PasswordInput()}
+
+
+class RegisterForm(BaseRegisterForm, forms.ModelForm):
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
