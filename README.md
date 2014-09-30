@@ -88,7 +88,6 @@ contener el siguiente formato `<protocol>://<domain>/social/complete/<backend>/`
 
 ## Problemas comunes
 
-1. 
 **Error:**
 >ValueError: Only unicode objects are escapable. Got None of type <type 'NoneType'>.
 
@@ -98,7 +97,7 @@ No se agregaron las variables `SOCIAL_AUTH_<BACKEND>_KEY` o `SOCIAL_AUTH_<BACKEN
 **Solución**
 Agregar dichas variables con su valor correcto.
 
-2. 
+
 **Error**
 Al intentar conectarme con una red social la pantalla de queda en blanco.
 
@@ -108,7 +107,7 @@ El valor de `SOCIAL_AUTH_<BACKEND>_KEY` es incorrecto
 **Solución**
 Agregar el valor correcto
 
-3. 
+
 **Error**
 Al intentar conectar con una red social
 >HTTPError: 400 Client Error: Bad Request
@@ -119,7 +118,7 @@ El valor para `SOCIAL_AUTH_<BACKEND>_SECRET es incorrecto`
 **Solución**
 Agregar el valor correcto
 
-4.
+
 **Error**
 >Error: redirect_uri_mismatch
 
@@ -129,7 +128,7 @@ La URL de redireccion no es correcta.
 **Solución**
 Agregar la URL correcta en el administrador de aplicaciones correspondiente. El formato de la URL debe ser `<protocol>://<domain>/social/complete/<backend>/`
 
-5.
+
 **Error**
 Cuando intentamos conectar con Outlook
 >No se puede completar la solicitud. La cuenta Microsoft está experimentando problemas técnicos. Inténtalo de nuevo más tarde.
