@@ -7,10 +7,10 @@
                     {% if user.has_usable_password %}
                         <form class="form" action="{% url 'users:unset_password' %}" method="POST">
                             {% csrf_token %}
-                            <input type="submit" class="btn btn-danger" value="Desactiva la contraseña para tu cuenta" />
+                            <input type="submit" class="btn btn-danger" value="Desactiva la contraseña para tu cuenta" {% if user.social_auth.count <= 0 %} disabled {% endif %}/>
                         </form>
                     {% else %}
-                        <a href="{% url 'users:set_password' %}" class="btn btn-success">
+                        <a href="{% url 'users:set_password' %}" class="btn btn-primary">
                             Agrega una contraseña a tu cuenta
                         </a>
                     {% endif %}
