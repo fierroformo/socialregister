@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -9,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.views.generic.edit import FormView
 
+from socialregister.views import BACKENDS
 from socialregister.users.forms import (
     CompleteDataForm, SetPasswordForm, RegisterForm)
 
@@ -88,7 +88,7 @@ class UserLogin(FormView):
 
     def get_context_data(self, queryset=None, **kwargs):
         context = super(UserLogin, self).get_context_data(**kwargs)
-        context['backends'] = settings.BACKENDS
+        context['backends'] = BACKENDS
         return context
 
     def dispatch(self, *args, **kwargs):

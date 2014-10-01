@@ -39,9 +39,9 @@
     </div>
     {% for key, value in backends.items %}
         <div class="well">
-            {% if not value.active %}
+            {% if not value.api_key_config %}
                 <h5>Configuración para {{ value.title }}</h5>
-                <p>{{ value.instructions|markdown }}</p>
+                <p>{{ value.description|markdown }}</p>
             {% elif value.connected and user.is_authenticated %}
                 <h5>Estás conectado con {{ value.title }}</h5>
                 <form class="form" action="{% url 'users:delete_conection' key %}" method="POST">
