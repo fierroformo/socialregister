@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import logout
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
-from django.views.generic import View
+from django.views.generic import TemplateView, View
 from django.views.generic.edit import FormView
 
 from socialregister.views import BACKENDS
@@ -29,20 +29,6 @@ class UserCompleteData(FormView):
         if self.request.user.email:
             return redirect('/')
         return super(UserCompleteData, self).dispatch(*args, **kwargs)
-
-
-class UserSetPassword(FormView):
-    form_class = SetPasswordForm
-    template_name = "users/set_password.html"
-
-    def form_valid(self, form):
-        self.request.user.set_password(form.cleaned_data['password'])
-        self.request.user.save()
-        return redirect("/")
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(UserSetPassword, self).dispatch(*args, **kwargs)
 
 
 class UserUnsetPassword(View):
@@ -97,6 +83,15 @@ class UserLogin(FormView):
         return super(UserLogin, self).dispatch(*args, **kwargs)
 
 
+class UserLoginCanceled(TemplateView):
+    template_name = "users/auth_canceled.html"
+
+    def dispatch(self, *args, **kwargs):
+        if self.request.user.is_authenticated():
+            return redirect('home')
+        return super(UserLoginCanceled, self).dispatch(*args, **kwargs)
+
+
 def user_logout(request):
     return logout(request, next_page="users:login")
 
@@ -117,3 +112,17 @@ class UserRegister(FormView):
         if self.request.user.is_authenticated():
             return redirect('home')
         return super(UserRegister, self).dispatch(*args, **kwargs)
+
+
+class UserSetPassword(FormView):
+    form_class = SetPasswordForm
+    template_name = "users/set_password.html"
+
+    def form_valid(self, form):
+        self.request.user.set_password(form.cleaned_data['password'])
+        self.request.user.save()
+        return redirect("/")
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UserSetPassword, self).dispatch(*args, **kwargs)
