@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Django settings for socialregister project.
 import os
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
@@ -113,6 +114,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'markdown_deux',
     'south',
     'social.apps.django_app.default',
     'socialregister.users',

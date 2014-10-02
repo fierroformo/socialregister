@@ -43,7 +43,7 @@ Twitter, Google+, Outlook, Github y Linkedin, hace uso del proyecto `python soci
 
 * [Crea la aplicación](https://github.com/settings/applications)
 * Agregar `'social.backends.github.GithubOAuth2'` a la tupla `AUTHENTICATION_BACKENDS`
-* `SOCIAL_AUTH_GITHUB_KEY = '<key>'
+* `SOCIAL_AUTH_GITHUB_KEY = '<key>'`
 * `SOCIAL_AUTH_GITHUB_SECRET = '<secret>'`
 
 
