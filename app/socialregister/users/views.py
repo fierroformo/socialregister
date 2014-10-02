@@ -1,16 +1,24 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import logout
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
-from django.views.generic import View
+from django.views.generic import TemplateView, View
 from django.views.generic.edit import FormView
 
 from socialregister.views import BACKENDS
 from socialregister.users.forms import (
     CompleteDataForm, SetPasswordForm, RegisterForm)
+from socialregister.users.mixins import AuthenticationMixin
+from socialregister.users.utils import (
+    generate_activation_code, send_confirmation_email)
+
+
+class UserActivationMessage(AuthenticationMixin, TemplateView):
+    template_name = 'users/activation_message.html'
 
 
 class UserCompleteData(FormView):
@@ -47,7 +55,7 @@ class UserUnsetPassword(View):
         return super(UserUnsetPassword, self).dispatch(*args, **kwargs)
 
 
-class UserDeleteConection(View):
+class UserDeleteConnection(View):
 
     def post(self, *args, **kwargs):
         self.request.user.social_auth.get(
@@ -61,10 +69,10 @@ class UserDeleteConection(View):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(UserDeleteConection, self).dispatch(*args, **kwargs)
+        return super(UserDeleteConnection, self).dispatch(*args, **kwargs)
 
 
-class UserLogin(FormView):
+class UserLogin(AuthenticationMixin, FormView):
     form_class = AuthenticationForm
     template_name = "users/login.html"
 
@@ -87,7 +95,7 @@ def user_logout(request):
     return logout(request, next_page="users:login")
 
 
-class UserRegister(FormView):
+class UserRegister(AuthenticationMixin, FormView):
     form_class = RegisterForm
     success_url = '/'
     template_name = "users/register.html"
@@ -96,8 +104,11 @@ class UserRegister(FormView):
         u = form.save()
         u.username = u.email
         u.set_password(form.cleaned_data['password'])
+        u.is_active = False #settings.DEBUG
+        u.activation_code = generate_activation_code(u.email)
         u.save()
-        return redirect("users:login")
+        send_confirmation_email(u.activation_code, u.email)
+        return redirect("users:activation_message")
 
     def dispatch(self, *args, **kwargs):
         if self.request.user.is_authenticated():
