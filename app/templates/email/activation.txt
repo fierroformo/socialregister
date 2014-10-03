@@ -2,7 +2,7 @@ Activa tu cuenta - <{{ site }}>
 
 
 Por favor confirma tu dirección de email dando click en el siguiente enlace:
-http://{{ site }}/user/activate/{{ activation_code }}
+http://{{ site }}/users/activate/{{ activation_code }}
 
 
 Si tienes problemas con el enlace, copialo y pegalo en la barra de direcciones de tu navegador

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-from django.contrib.auth import login
+from django.contrib.auth import get_user_model, login
+UserModel = get_user_model()
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import logout
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, View
 from django.views.generic.edit import FormView
@@ -17,8 +18,23 @@ from socialregister.users.utils import (
     generate_activation_code, send_confirmation_email)
 
 
+class UserActivation(View):
+
+    def get(self, request, **kwargs):
+        user = get_object_or_404(
+            UserModel, activation_code=kwargs['activation_code'],
+            is_active=True)
+        user.is_active = True
+        user.save()
+        return redirect('users:activation_successful')
+
+
 class UserActivationMessage(AuthenticationMixin, TemplateView):
     template_name = 'users/activation_message.html'
+
+
+class UserActivationSuccessful(AuthenticationMixin, TemplateView):
+    template_name = 'users/activation_successful.html'
 
 
 class UserCompleteData(FormView):
@@ -104,7 +120,7 @@ class UserRegister(AuthenticationMixin, FormView):
         u = form.save()
         u.username = u.email
         u.set_password(form.cleaned_data['password'])
-        u.is_active = False #settings.DEBUG
+        u.is_active = settings.DEBUG
         u.activation_code = generate_activation_code(u.email)
         u.save()
         send_confirmation_email(u.activation_code, u.email)

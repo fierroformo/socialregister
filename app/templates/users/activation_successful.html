@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row">
+        <h2 class="title-page">¡Cuenta activada!</h2>
+        <p>Tu cuenta ha sido activada satisfactoriamente</p>
+        <p><a href="{% url 'users:login' %}" class="btn boton">Ingresar</a></p>
+    </div>
+{% endblock %}
