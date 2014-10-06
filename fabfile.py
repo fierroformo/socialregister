@@ -1,9 +1,5 @@
 # encoding: utf-8
-import os
-
-from fabric.api import env, local, run, cd, task, require, settings, prefix
-from fabric.contrib.project import rsync_project
-from fabric.colors import green, red
+from fabric.api import env, local, run, cd, task, require, settings
 
 
 #
@@ -27,9 +23,6 @@ def vagrant():
     env.site_dir = "/home/vagrant/app"
 
 
-#
-# Tasks
-#
 @task
 def bootstrap():
     """
@@ -42,6 +35,15 @@ def bootstrap():
         run('touch db/database.db')
     # Sincroniza la base de datos
     syncdb()
+    # Carga fixtures
+    loaddata()
+
+
+@task
+def loaddata():
+    require("site_dir")
+    with cd(env.site_dir):
+        run("python manage.py loaddata sites.json")
 
 
 @task
@@ -54,9 +56,6 @@ def resetdb():
     syncdb()
 
 
-#
-# manage.py
-#
 @task
 def syncdb():
     require("site_dir")
