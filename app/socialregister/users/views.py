@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import logout
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView, View
+from django.views.generic import View
 from django.views.generic.edit import FormView
 
 from socialregister.views import BACKENDS
@@ -81,15 +81,6 @@ class UserLogin(FormView):
         if self.request.user.is_authenticated():
             return redirect('home')
         return super(UserLogin, self).dispatch(*args, **kwargs)
-
-
-class UserLoginCanceled(TemplateView):
-    template_name = "users/auth_canceled.html"
-
-    def dispatch(self, *args, **kwargs):
-        if self.request.user.is_authenticated():
-            return redirect('home')
-        return super(UserLoginCanceled, self).dispatch(*args, **kwargs)
 
 
 def user_logout(request):
