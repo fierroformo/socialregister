@@ -150,6 +150,10 @@ LOGGING = {
     }
 }
 
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/home/vagrant/email'
+
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'home'
 SOCIAL_AUTH_LOGIN_URL = 'users:login'
 

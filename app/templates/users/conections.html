@@ -44,7 +44,7 @@
                 <p>{{ value.description|markdown }}</p>
             {% elif value.connected and user.is_authenticated %}
                 <h5>Estás conectado con {{ value.title }}</h5>
-                <form class="form" action="{% url 'users:delete_conection' key %}" method="POST">
+                <form class="form" action="{% url 'users:delete_connection' key %}" method="POST">
                     {% csrf_token %}
                     <input type="submit" class="btn btn-danger" value="Eliminar Conexión" />
                 </form>
