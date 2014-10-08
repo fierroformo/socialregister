@@ -8,9 +8,13 @@
             <h3>Social login <span class="small">Completa tus datos</a></span></h3>
             {% csrf_token %}
             <hr/>
-            <table>
-                {{ form.as_table }}
-            </table>
+            {% for error in form.email.errors %}
+                {{ error|safe }}
+            {% endfor %}
+            <div class="form-group">
+                <label for="email">Email:</label>
+                {{ form.email }}
+            </div>
             <br/>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary btn-block" value="Guardar" />

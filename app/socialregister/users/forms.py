@@ -24,7 +24,11 @@ class CompleteDataForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if email and User.objects.filter(email=email).count():
-            raise forms.ValidationError(u'Email addresses must be unique.')
+            message = """
+                <p class='errorlist'>Hay un usuario registrado con este correo
+                <a href="/users/logout/">Ingresa con otra cuenta</a></p>
+            """
+            raise forms.ValidationError(message)
         return email
 
 
