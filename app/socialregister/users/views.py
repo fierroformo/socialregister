@@ -101,11 +101,6 @@ class UserLogin(AuthenticationMixin, FormView):
         context['backends'] = BACKENDS
         return context
 
-    def dispatch(self, *args, **kwargs):
-        if self.request.user.is_authenticated():
-            return redirect('home')
-        return super(UserLogin, self).dispatch(*args, **kwargs)
-
 
 def user_logout(request):
     return logout(request, next_page="users:login")
@@ -125,11 +120,6 @@ class UserRegister(AuthenticationMixin, FormView):
         u.save()
         send_confirmation_email(u.activation_code, u.email)
         return redirect("users:activation_message")
-
-    def dispatch(self, *args, **kwargs):
-        if self.request.user.is_authenticated():
-            return redirect('home')
-        return super(UserRegister, self).dispatch(*args, **kwargs)
 
 
 class UserSetPassword(FormView):
