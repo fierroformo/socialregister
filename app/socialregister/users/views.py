@@ -31,20 +31,6 @@ class UserCompleteData(FormView):
         return super(UserCompleteData, self).dispatch(*args, **kwargs)
 
 
-class UserSetPassword(FormView):
-    form_class = SetPasswordForm
-    template_name = "users/set_password.html"
-
-    def form_valid(self, form):
-        self.request.user.set_password(form.cleaned_data['password'])
-        self.request.user.save()
-        return redirect("/")
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(UserSetPassword, self).dispatch(*args, **kwargs)
-
-
 class UserUnsetPassword(View):
 
     def post(self, *args, **kwargs):
@@ -117,3 +103,17 @@ class UserRegister(FormView):
         if self.request.user.is_authenticated():
             return redirect('home')
         return super(UserRegister, self).dispatch(*args, **kwargs)
+
+
+class UserSetPassword(FormView):
+    form_class = SetPasswordForm
+    template_name = "users/set_password.html"
+
+    def form_valid(self, form):
+        self.request.user.set_password(form.cleaned_data['password'])
+        self.request.user.save()
+        return redirect("/")
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UserSetPassword, self).dispatch(*args, **kwargs)
