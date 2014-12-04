@@ -115,6 +115,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'crispy_forms',
     'markdown_deux',
     'south',
     'social.apps.django_app.default',
@@ -169,6 +170,8 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.live.LiveOAuth2',
     'social.backends.twitter.TwitterOAuth',
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '664961683574138'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'f76607d426b304c3b6c1102d466389a7'
