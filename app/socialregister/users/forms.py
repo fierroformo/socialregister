@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 from django import forms
+
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit, HTML
+from crispy_forms.bootstrap import FormActions
+
 from socialregister.users.models import User
 
 
@@ -49,3 +54,14 @@ class RegisterForm(BaseRegisterForm, forms.ModelForm):
         fields = [
             "first_name", "last_name", "email", "password"]
         widgets = {'password': forms.PasswordInput()}
+
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout.append(
+            FormActions(
+                HTML("""<a role="button" class="btn btn-default"
+                        href="{% url "home" %}">Cancel</a> """),
+                Submit('save', 'Guardar'),
+        ))
+        #self.helper.add_input(Submit('submit', 'Save'))

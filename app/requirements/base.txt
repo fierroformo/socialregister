@@ -1,5 +1,6 @@
 psycopg2
 django<1.7
+django-crispy-forms
 django-markdown-deux
 markdown
 python-social-auth==0.1.26
