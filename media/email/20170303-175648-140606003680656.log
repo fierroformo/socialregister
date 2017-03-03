@@ -1,0 +1,46 @@
+Content-Type: multipart/alternative;
+ boundary="===============5557489484005175571=="
+MIME-Version: 1.0
+Subject: Activa tu cuenta - example.com
+From: webmaster@localhost
+To: ab@vincoorbis.com
+Date: Fri, 03 Mar 2017 17:56:48 -0000
+Message-ID: <20170303175648.2999.91399@vagrant-ubuntu-trusty-64>
+
+--===============5557489484005175571==
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Activa tu cuenta - <example.com>
+
+
+Por favor confirma tu dirección de email dando click en el siguiente enlace:
+http://example.com/users/activate/8550354f502e28e212624a4542b4797aced6026a
+
+
+Si tienes problemas con el enlace, copialo y pegalo en la barra de direcciones de tu navegador
+
+--===============5557489484005175571==
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Activa tu cuenta para - &lt;example.com&gt;</title>
+    </head>
+    <body>
+        <div>
+            <p>Por favor confirma tu dirección de email dando click en el siguiente enlace:
+            <a href="http://example.com/users/activate/8550354f502e28e212624a4542b4797aced6026a">http://example.com/user/activate/8550354f502e28e212624a4542b4797aced6026a</a></p>
+            <p>Si tienes problemas con el enlace, copialo y pegalo en la barra de direcciones de tu navegador</p>
+        </div>
+    </body>
+</html>
+
+--===============5557489484005175571==--
+
+-------------------------------------------------------------------------------

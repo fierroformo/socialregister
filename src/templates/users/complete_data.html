@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block page_title %}Login{% endblock %}
+
+{% block content %}
+    <div class="col-md-4 col-md-offset-4">
+        <form class="form custom-form" method="POST">
+            <h3>Social login <span class="small">Completa tus datos</span></h3>
+            {% csrf_token %}
+            <hr/>
+            {% for error in form.email.errors %}
+                {{ error|safe }}
+            {% endfor %}
+            <div class="form-group">
+                <label for="email">Email:</label>
+                {{ form.email }}
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block" value="Guardar" />
+            </div>
+        </form>
+    </div>
+{% endblock %}
