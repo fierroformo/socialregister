@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}Login{% endblock %}
+
+{% block content %}
+    <div class="col-md-4 col-md-offset-4">
+        <form class="form custom-form" method="POST">
+            <h3>Social register</h3>
+            <table>
+                {% crispy form %}
+            </table>
+        </form>
+    </div>
+{% endblock %}

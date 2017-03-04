@@ -1,4 +1,3 @@
-.vagrant
-app/db/*
+.vagrant/
 *.pyc
-*~
+.tox

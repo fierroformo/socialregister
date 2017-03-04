@@ -3,23 +3,53 @@ socialregister es una aplicacion para autenticación de usuarios con facebook,
 Twitter, Google+, Outlook, Github y Linkedin, hace uso del proyecto `python social auth`
 
 
-## Configuración
+######
+## Prerequisites
++ [Oracle's VirtualBox](https://www.virtualbox.org/)
++ [Vagrant](http://www.vagrantup.com/)
++ [Python](http://www.python.org/)
++ [Fabric](http://www.fabfile.org/)
++ [fabutils](https://github.com/vinco/fabutils)
 
 
-### Instalar `python social auth`
+## Configuring your virtual environment
+1. Clone repository
 
-* [Instalación](http://python-social-auth.readthedocs.org/en/latest/installing.html)
+    ```bash
+    $ git clone --recursive git@github.com:fierroformo/socialregister.git
+    ```
+
+2. Create the virtual machine
+
+    ```bash
+    $ cd socialregister
+    $ vagrant up
+    ```
+
+3.  Development environment configuration for localhost to work in socialregister.local
+
+    ```bash
+    # /etc/hosts
+    192.168.33.27       socialregister.local
+    ```
+
+4. Build the environment inside the virtual machine
+
+    ```bash
+    $ fab environment:vagrant bootstrap
+    ```
+
+5. Run the development server
+
+    ```
+    $ fab environment:vagrant runserver
+    ```
+
+6. Open your web browser and check the project at `redsep.local`
 
 
-### Agregar los siguientes valores a settings.py
+## Configuración social auth
 
-
-* Agregar `socialregister.users` a `INSTALLED_APPS`
-
-
-* Definir la tupla `AUTHENTICATION_BACKENDS`, siempre debe incluir el backend `django.contrib.auth.backends.ModelBackend`
-
-* Definir la tupla `SOCIAL_AUTH_PIPELINE`
 
 | setting                                    | descripción                |
 |--------------------------------------------|----------------------------|
@@ -137,4 +167,4 @@ Cuando intentamos conectar con Outlook
 Outlook no acepta peticiones a su api desde entornos de desarrollo (localhost)
 
 **Solución**
-Configuramos una URL en local(por ejemplo así [esto](http://stackoverflow.com/questions/8541182/apache-redirect-to-another-port/13089668#13089668)) para que coincida con la que agregamos en el centro de aplicaciones de Outlook 
+Configuramos una URL en local(por ejemplo así [esto](http://stackoverflow.com/questions/8541182/apache-redirect-to-another-port/13089668#13089668)) para que coincida con la que agregamos en el centro de aplicaciones de Outlook
